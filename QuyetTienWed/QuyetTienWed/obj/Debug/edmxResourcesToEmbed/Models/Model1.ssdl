@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CS4PEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BangSanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Loai_id" Type="int" Nullable="false" />
+    <Property Name="GiaBan" Type="int" Nullable="false" />
+    <Property Name="GiaGoc" Type="int" Nullable="false" />
+    <Property Name="GiaGop" Type="int" Nullable="false" />
+    <Property Name="SoLuongTon" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BangSanPh__Loai___239E4DCF">
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+    <End Role="BangSanPham" Type="Self.BangSanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BangSanPham">
+        <PropertyRef Name="Loai_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CS4PEModelStoreContainer">
+    <EntitySet Name="BangSanPham" EntityType="Self.BangSanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BangSanPh__Loai___239E4DCF" Association="Self.FK__BangSanPh__Loai___239E4DCF">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+      <End Role="BangSanPham" EntitySet="BangSanPham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

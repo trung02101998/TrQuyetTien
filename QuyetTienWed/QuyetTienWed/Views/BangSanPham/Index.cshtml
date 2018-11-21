@@ -1,0 +1,69 @@
+﻿@model IEnumerable<QuyetTienWed.Models.BangSanPham>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh Sách Sản Phẩm</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Create</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Mã sản phẩm
+        </th>
+        <th>
+          Tên sản phẩm
+        </th>
+        <th>
+           Giá bán 
+        </th>
+        <th>
+          Giá gốc
+        </th>
+        <th>
+          Giá góp
+        </th>
+        <th>
+          Số lượng tồn
+        </th>
+        <th>
+           Tên loại
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaGoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaGop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuongTon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.id})" class="btn btn-primary">Sửa</a>
+            <a href="@Url.Action("Details", new { id = item.id})" class="btn btn-danger">Xem</a>
+            <a href="@Url.Action("Delete", new { id = item.id})" class="btn btn-success">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>

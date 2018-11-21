@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CS4PEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CS4PEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BangSanPhams" EntityType="CS4PEModel.BangSanPham" />
+    <EntitySet Name="LoaiSanPhams" EntityType="CS4PEModel.LoaiSanPham" />
+    <AssociationSet Name="FK__BangSanPh__Loai___239E4DCF" Association="CS4PEModel.FK__BangSanPh__Loai___239E4DCF">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+      <End Role="BangSanPham" EntitySet="BangSanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BangSanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaSP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenSP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Loai_id" Type="Int32" Nullable="false" />
+    <Property Name="GiaBan" Type="Int32" Nullable="false" />
+    <Property Name="GiaGoc" Type="Int32" Nullable="false" />
+    <Property Name="GiaGop" Type="Int32" Nullable="false" />
+    <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LoaiSanPham" Relationship="CS4PEModel.FK__BangSanPh__Loai___239E4DCF" FromRole="BangSanPham" ToRole="LoaiSanPham" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BangSanPhams" Relationship="CS4PEModel.FK__BangSanPh__Loai___239E4DCF" FromRole="LoaiSanPham" ToRole="BangSanPham" />
+  </EntityType>
+  <Association Name="FK__BangSanPh__Loai___239E4DCF">
+    <End Type="CS4PEModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="1" />
+    <End Type="CS4PEModel.BangSanPham" Role="BangSanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BangSanPham">
+        <PropertyRef Name="Loai_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
