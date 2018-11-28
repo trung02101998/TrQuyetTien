@@ -9,61 +9,79 @@
 <p>
     <a href="@Url.Action("Create")" class="btn btn-primary">Create</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-           Mã sản phẩm
-        </th>
-        <th>
-          Tên sản phẩm
-        </th>
-        <th>
-           Giá bán 
-        </th>
-        <th>
-          Giá gốc
-        </th>
-        <th>
-          Giá góp
-        </th>
-        <th>
-          Số lượng tồn
-        </th>
-        <th>
-           Tên loại
-        </th>
-        <th></th>
-    </tr>
+<table id="BangSanpham" class="table table-bordered table-hover tab-content">
+    <thead>
+        <tr>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá bán
+            </th>
+            <th>
+                Giá gốc
+            </th>
+            <th>
+                Giá góp
+            </th>
+            <th>
+                Số lượng tồn
+            </th>
+            <th>
+                Tên loại
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.MaSP
+                </td>
+                <td>
+                    @item.TenSP
+                </td>
+                <td>
+                    @item.GiaBan
+                </td>
+                <td>
+                    @item.GiaGoc
+                </td>
+                <td>
+                    @item.GiaGop
+                </td>
+                <td>
+                    @item.SoLuongTon
+                </td>
+                <td>
+                    @item.LoaiSanPham.TenLoai
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaBan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaGoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaGop)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuongTon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", new { id = item.id})" class="btn btn-primary">Sửa</a>
-            <a href="@Url.Action("Details", new { id = item.id})" class="btn btn-danger">Xem</a>
-            <a href="@Url.Action("Delete", new { id = item.id})" class="btn btn-success">Xóa</a>
-        </td>
-    </tr>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.id})" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil"> </span></a>
+                    <a href="@Url.Action("Details", new { id = item.id})" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-eye-open"> </span> </a>
+                    <a href="@Url.Action("Delete", new { id = item.id})" class="btn btn-success">
+                        <span class="glyphicon glyphicon-remove"> </span> </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    </table>
+@section scripts{
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#BangSanpham').DataTable();
+        });
+    </script>
 }
-
-</table>
